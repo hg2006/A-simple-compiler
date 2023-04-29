@@ -4,3 +4,4 @@ This compiler was done as two consecutive assignment question of CS 146, W23 off
 ## Table of Contents
 
 ## Motivation and Simnulation of SIMPL
+SIMPL is an artificial imperative language, designed by the instructor team of CS 146, that only supports a very small subset of features of imperative programming. To avoid complicated parsing issues an only focos on the core concepts of imperative programming, S-expression syntax is used.
