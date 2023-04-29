@@ -129,30 +129,6 @@ E.g. comping ```(+ exp1 exp2)``` =>
      (label label2)
  ```
 
-
-
-
-
-## SIMPL-F: Supporting Functions
-
-... <br>
-
-### Main Function
-A ```main``` function is a function that takes no arguements and is executed when running the program. <br>
-A program without a ```main``` function does nothing. Therefore, during the first scanning stage of the program, the compiling process will halt immediately if the ```main``` function is not defined. <br>
-
-
-### Stack Frame
-To support recursive calls for functions, we simulate a stack with two pointers, Stack Pointer ```sp``` and Frame Pointer ```fp```. <br>
-Each function call will generate a stack frame that contains values for arguements, local variables, and other relative information such as its return address (more detailed information will be stated in the section [Compiling a Function Call](#compiling-a-function-call). <br>
-<br>
-The ```sp``` stores the address of the first available space in the stack, that is, ```sp``` points to the first available space in the simulated stack. <br>
-The ```fp``` points to the first argument for the current function call (more detailed information will be stated in the section [Compiling a Function Call](#compiling-a-function-call). <br> 
-Both pointers are mutated and dereferenced by basic arithmetics, [move][...], and [offset][...] instructions. <br>
-&emsp; E.g. ```(add sp sp 2)``` means to increment the ```sp``` by 2. <br>
-&emsp; &emsp; &nbsp; ```(move (0 sp) fp)``` means to store the value stored in ```fp``` to the address where ```sp``` points to. <br>
-
-
 ### Compiling a Function Definition
 The number of the function arguments and local variables remains unchanged. Thus we are able to deduce the address of any variable of the function relative to the ```fp```. <br>
 During the first scanning stage of the program, a table (```environment```) that maps each variable to the address in the stack relative to the ```fp``` where the value of such variable may be stored in during a function applicaiton. <br>
@@ -178,3 +154,6 @@ We could have a dedicated space for the value to ```return```, but since we will
 As a result, when compiling a function application, we reserve two spaces to store  the previous value of ```PC``` and the previous value of ```fp``` respectively, and we increment ```sp``` by 2 (so that it points to the first available space again). Then we include the compiled code to evaluating given arguements, and update the ```fp```. <br>
 Then we [```jsr```][...] to the corresponding label while storing the current ```PC``` to the previously reserved space, namely ```(-2 fp)``` (this is how we determine where to ```jump``` back to when we compiling a [```return```](#return) in a function definition). <br>
 We then move the produced value to its reserved space, update the ```sp``` relative to the ```fp```, and finally, update the ```fp``` back to the previous value of ```fp```. <br>
+
+
+
