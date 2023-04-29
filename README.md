@@ -45,3 +45,6 @@ program	 	=	 	(vars [(id number) ...] stmt ...) <br> <br>
 &emsp;&emsp; 	 	  |	(or bexp ...) <br>
 &emsp;&emsp; 	 	  |	true <br>
 &emsp;&emsp; 	 	  |	false <br> <br>
+
+## SIMPL-F: Supporting Functions
+Syntax for defining functions in SIMPL:
