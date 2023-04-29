@@ -46,8 +46,8 @@ program	 	=	 	(vars [(id number) ...] stmt ...) <br> <br>
 &emsp;&emsp; 	 	  |	true <br>
 &emsp;&emsp; 	 	  |	false <br> <br>
 
-## SIMPL-F: Supporting Functions
-Syntax for defining functions in SIMPL: <br>
+### SIMPL-F: Supporting Functions
+Syntax for defining functions in SIMPL-F: <br>
 A program now is a sequence of functions. If there is a main function, that function si applied with no arguments to run the program; otherwise, the program does nothing (pretty much like how C works). <br> <br>
   program	=	function ...  <br> <br>
  	 	 	 	 
@@ -58,3 +58,5 @@ A program now is a sequence of functions. If there is a main function, that func
  	 	 	 	 
   stmt = (return aexp) <br>
 &emsp;&emsp; 	 	| ...
+
+## The Assignment
