@@ -12,5 +12,6 @@ The following are the elements of imperative programming based on which SIMPL is
 - Expressions only as part of statements. (Note since in CS 146 we proceeded into imperative programming from functional programming, namely Racket, distinguishing between statements and expressions are important)
 - Sequencing of two or more statements
 - Conditional evaluation
+- Function definition, Function call & Return
 
 ### Grammar
