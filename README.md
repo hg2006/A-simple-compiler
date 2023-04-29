@@ -37,7 +37,7 @@ program	 	=	 	(vars [(id number) ...] stmt ...) <br> <br>
  	 	 	 	 
  bexp = (= aexp aexp) <br>
 &emsp;&emsp; 	 	  | (> aexp aexp) <br>
-&emsp;&emsp;	 	  |	(< aexp aexp) <br>
+&emsp;&emsp;	 	   |	(< aexp aexp) <br>
 &emsp;&emsp; 	    |	(>= aexp aexp) <br>
 &emsp;&emsp; 	    |	(<= aexp aexp) <br>
 &emsp;&emsp; 	 	  |	(not bexp) <br>
@@ -48,3 +48,12 @@ program	 	=	 	(vars [(id number) ...] stmt ...) <br> <br>
 
 ## SIMPL-F: Supporting Functions
 Syntax for defining functions in SIMPL:
+  program	=	function ...  <br> <br>
+ 	 	 	 	 
+  function = (fun (id id ...) (vars [(id int) ...] stmt ...))
+ 	 	 	 	 
+  aexp =	(id aexp ...) <br>
+&emsp;&emsp; 	 	|	...
+ 	 	 	 	 
+  stmt = (return aexp) <br>
+&emsp;&emsp; 	 	| ...
