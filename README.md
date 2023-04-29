@@ -47,7 +47,8 @@ program	 	=	 	(vars [(id number) ...] stmt ...) <br> <br>
 &emsp;&emsp; 	 	  |	false <br> <br>
 
 ## SIMPL-F: Supporting Functions
-Syntax for defining functions in SIMPL:
+Syntax for defining functions in SIMPL: <br>
+A program now is a sequence of functions. If there is a main function, that function si applied with no arguments to run the program; otherwise, the program does nothing (pretty much like how C works). <br> <br>
   program	=	function ...  <br> <br>
  	 	 	 	 
   function = (fun (id id ...) (vars [(id int) ...] stmt ...))
