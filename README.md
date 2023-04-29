@@ -12,6 +12,36 @@ The following are the elements of imperative programming based on which SIMPL is
 - Expressions only as part of statements. (Note since in CS 146 we proceeded into imperative programming from functional programming, namely Racket, distinguishing between statements and expressions are important)
 - Sequencing of two or more statements
 - Conditional evaluation
-- Function definition, Function call & Return
+- Repetition
 
 ### Grammar
+Below is the grammar of simplest version of SIMPL, written in Haskell. <br> <br>
+
+program	 	=	 	(vars [(id number) ...] stmt ...) <br> <br>
+ 	 	 	 	 
+  stmt = (print aexp)  <br>
+ &emsp;&emsp;    | (print string) <br>
+ &emsp;&emsp;    | (set id aexp) <br>
+ &emsp;&emsp; 	  | (seq stmt ...) <br>
+ &emsp;&emsp;     | (iif bexp stmt stmt) <br>
+ &emsp;&emsp;     | (skip) <br>
+ &emsp;&emsp;	 	  | (while bexp stmt ...) <br> <br>
+
+ aexp	=	(+ aexp aexp) <br>
+&emsp;&emsp; 	 	  |	(* aexp aexp) <br>
+&emsp;&emsp; 	 	  |	(- aexp aexp) <br>
+&emsp;&emsp; 	 	  |	(div aexp aexp) <br>
+&emsp;&emsp; 	 	  |	(mod aexp aexp) <br>
+&emsp;&emsp; 	 	  |	number <br>
+&emsp;&emsp; 	 	  |	id <br> <br>
+ 	 	 	 	 
+ bexp = (= aexp aexp) <br>
+&emsp;&emsp; 	 	  | (> aexp aexp) <br>
+&emsp;&emsp;	 	  |	(< aexp aexp) <br>
+&emsp;&emsp; 	    |	(>= aexp aexp) <br>
+&emsp;&emsp; 	    |	(<= aexp aexp) <br>
+&emsp;&emsp; 	 	  |	(not bexp) <br>
+&emsp;&emsp; 	 	  |	(and bexp ...) <br>
+&emsp;&emsp; 	 	  |	(or bexp ...) <br>
+&emsp;&emsp; 	 	  |	true <br>
+&emsp;&emsp; 	 	  |	false <br> <br>
