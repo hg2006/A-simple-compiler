@@ -205,6 +205,7 @@ As described above, besides function arguments and local variables, some other i
 As a result, when compiling a function application, we reserve two spaces to store ```return_ADDR``` and ```return_fp```, and we increment ```sp``` by 2 (so that it points to the first available space again). Then we include the compiled code to evaluating given arguements, and update the ```fp```. Note updating the fp can be a bit tricky due to how this compiler structures the stack frame (please refer to the comments in the code for further detail). <br>
 After everything above gets set, we ```jsr``` to the corresponding label while storing the current ```PC``` to the previously reserved space, namely ```(0 fp)```. At this point, everything about the function call is done. As the program runs through the jsr, it will head to the start of the corresponding function definition and start executing the instructions there.<br>
 E.g. (f 2 3) ->      (the locals in f are irrelevant)
+
 ```racket
 (add sp sp 1)
 (move (1 sp) fp)     ;; set up RETURN_fp
