@@ -177,10 +177,6 @@ compile statements of f
 (data _f_m_val m)
 
 ```
-<br>
-<br>
-
-
 ### Return
 Each function produces an integer value through a ```return``` statement. <br>
 To guarantee that there is always a returned value for a function, we defined a syntax rule that every function must have a ```return``` statement as its last statement. This rule is checked during the compilation of each function's definition, and the compiler will produces an error if it detects any instances of missing ```return```. <br>
@@ -206,9 +202,25 @@ compile aexp
 As described above, besides function arguments and local variables, some other information should also be stored for each funtion call, namely the return, the ```return_fp```, where fp should be reset to, as well as ```return_ADDR```, to which we should reset the PC to. We will handle these along with setting up the parameters while compiling a function call.<br>
 
 <br>
-As a result, when compiling a function application, we reserve two spaces to store  the previous value of ```PC``` and the previous value of ```fp``` respectively, and we increment ```sp``` by 2 (so that it points to the first available space again). Then we include the compiled code to evaluating given arguements, and update the ```fp```. <br>
-Then we [```jsr```][...] to the corresponding label while storing the current ```PC``` to the previously reserved space, namely ```(-2 fp)``` (this is how we determine where to ```jump``` back to when we compiling a [```return```](#return) in a function definition). <br>
-We then move the produced value to its reserved space, update the ```sp``` relative to the ```fp```, and finally, update the ```fp``` back to the previous value of ```fp```. <br>
+As a result, when compiling a function application, we reserve two spaces to store ```return_ADDR``` and ```return_fp```, and we increment ```sp``` by 2 (so that it points to the first available space again). Then we include the compiled code to evaluating given arguements, and update the ```fp```. Note updating the fp can be a bit tricky due to how this compiler structures the stack frame (please refer to the comments in the code for further detail). <br>
+After everything above gets set, we ```jsr``` to the corresponding label while storing the current ```PC``` to the previously reserved space, namely ```(0 fp)```. At this point, everything about the function call is done. As the program runs through the jsr, it will head to the start of the corresponding function definition and start executing the instructions there.<br>
+E.g. (f 2 3) ->      (the locals in f are irrelevant)
+```racket
+(add sp sp 1)
+(move (1 sp) fp)     ;; set up RETURN_fp
+(add sp sp 2)        ;; (add sp sp 2) since we need to skip RETURN_ADDR as well,
+                     ;; we will come back later and set up RETURN_ADDR with jsr
+compile 2            ;; we do not move fp at this point since we might still need 
+compile 3            ;; to reference variables of current function
+
+(add sp sp 1)        
+(add (-1 sp) (* -1 (+ 3 (# of parameters))) sp) ;; tricky part, sp at at this point is
+(move fp (-1 sp))                               ;; (# of parameters + 3) ahead of where fp supposed to be
+(sub sp sp 1)   
+
+(jsr (0 fp) START_f)
+```
+
 
 
 
