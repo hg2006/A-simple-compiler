@@ -107,14 +107,14 @@ E.g. comping ```(+ exp1 exp2)``` =>
 ```
 <br>Techniques for compiling most of the other statements are similar to the way we compile ```(+ exp1 exp2)``` , we provide a few more examples of others.
 
-### (set var exp)
+#### (set var exp)
 ```racket
      compile exp         ;; Since set does not return, no (add sp sp 1) needed
      (move _var (-1 sp)) ;; Since the variable name is a SIMPL variable, we will append an underscore
      (sub sp sp 1)
 ```
 
-### (iif exp stmt1 stmt2)
+#### (iif exp stmt1 stmt2)
 ```racket
      compile exp
      (branch (-1 sp) label0)  ;; In the compiler, label0, label1, label2 will be labels produced           
