@@ -203,9 +203,8 @@ compile aexp
 ```
 
 ### Compiling a Function Call
-Besides function arguments and local variables, there are several information should be stored for each funtion call, namely the return, the ```return_fp```, where fp should be reset to, as well as ```return_ADDR```, to which we should reset the PC to. <br>
-Since the frame pointer and the stack pointer may be mutated constantly, a way to determine the information is to reserve spaces at the start of compiling the function call. <br>
-We could have a dedicated space for the value to ```return```, but since we will only use it after we ```jump``` back from the function call, we could simply store it in the space that stores the previous value of ```PC```, and it will remains at the top of the stack after updates of the ```sp```. <br>
+As described above, besides function arguments and local variables, some other information should also be stored for each funtion call, namely the return, the ```return_fp```, where fp should be reset to, as well as ```return_ADDR```, to which we should reset the PC to. We will handle these along with setting up the parameters while compiling a function call.<br>
+
 <br>
 As a result, when compiling a function application, we reserve two spaces to store  the previous value of ```PC``` and the previous value of ```fp``` respectively, and we increment ```sp``` by 2 (so that it points to the first available space again). Then we include the compiled code to evaluating given arguements, and update the ```fp```. <br>
 Then we [```jsr```][...] to the corresponding label while storing the current ```PC``` to the previously reserved space, namely ```(-2 fp)``` (this is how we determine where to ```jump``` back to when we compiling a [```return```](#return) in a function definition). <br>
