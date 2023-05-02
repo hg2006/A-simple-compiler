@@ -2,7 +2,7 @@
 
 (require test-engine/racket-tests)
 
-;; -------------------------- At the Beginning-------------------------------------------------------
+;; -------------------------- At the Beginning ------------------------------------------------------
 
 ;; This project is available on Github: https://github.com/hg2006/A-simple-compiler
 
