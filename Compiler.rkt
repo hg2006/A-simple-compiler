@@ -13,11 +13,10 @@
 
 ;; Uncomment the following to enable the use of associated assembler and PRIMPL simulator
 ;; (refer to the Github page for downloading and remember to put these files under the same directory)
+；(require "Assembler.rkt")
+；(require "PRIMPL.rkt")
 
-(require "Assembler.rkt")
-(require "PRIMPL.rkt")
-
-;;;; Several examples of SIMPL programs are provided at the end
+;; Several examples of SIMPL programs are provided at the end
 
 ;; -------------------------- Helper function: Label generator --------------------------------------
 
