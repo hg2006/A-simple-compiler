@@ -91,7 +91,7 @@ Each function call will generate a stack frame that contains values for arguemen
 <br>
 ```sp``` points to the first available space in the simulated stack. <br>
 The ```fp``` points to the starting point for the current function call in the stack space. <br> 
-Both pointers are mutated and dereferenced by basic arithmetics, ```move```, and ```offset``` instructions (see ["Grammar of PRIMPL" in assembler project](https://github.com/hg2006/A-simple-assembler/blob/main/README.md#grammar-and-other-details-of-primpl")). <br>
+Both pointers are mutated and dereferenced by basic arithmetics, ```move```, and ```offset``` instructions (see ["Grammar of PRIMPL" in assembler project](https://github.com/hg2006/A-simple-assembler/blob/main/README.md#grammar-and-other-details-of-primpl)). <br>
 &emsp; E.g. ```(add sp sp 2)``` means to increment the ```sp``` by 2. <br>
 &emsp; &emsp; &nbsp; ```(move (0 sp) fp)``` means to store the value stored in ```fp``` to the address where ```sp``` points to. <br>
 
