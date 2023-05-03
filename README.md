@@ -181,7 +181,7 @@ fp-> return_ADDR    ;; where pc should return to
      _f_m
 sp-> temporary storage starts here  
 ```
-When managing the A-PRIMPL instruction to set up a stack frame for the function, we will leave the work of initializing the ```return value```, ```return_ADDR```, ```return_fp```, ```parameters```, as well as placing the ```fp``` to the correct position to [Function call](compiling-a-function-call). When compiling a function definition, we need to:
+When managing the A-PRIMPL instruction to set up a stack frame for the function, we will leave the work of initializing the ```return value```, ```return_ADDR```, ```return_fp```, ```parameters```, as well as placing the ```fp``` to the correct position to [Function call](#compiling-a-function-call). When compiling a function definition, we need to:
 1. Set up a label for the start of the function, i.e. ```(label start_f)```
 2. Generating A-PRIMPL instruction to set up the value of locals in the stack frame (note we've already set up everything before locals in the stack frame during the function call)
 3. Generating A-PRIMPL instruction to help referene the parameters (the values of parameters are set up in the stack frame by function call, but we need a way to reference them with respect to ```fp```)
